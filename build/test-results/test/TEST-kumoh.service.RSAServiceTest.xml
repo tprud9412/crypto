@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="kumoh.service.RSAServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-09T15:46:24" hostname="SANG_GUEN_AN" time="0.096">
+  <properties/>
+  <testcase name="로그읽기()" classname="kumoh.service.RSAServiceTest" time="0.096"/>
+  <system-out><![CDATA[46D4CD4BEF44ECCC1FD033A6E55E9DEB newEncryptedData 2022-08-10T00:44:14 newAuthorInfo
+46D4CD4BEF44ECCC1FD033A6E55E9DEB newEncryptedData 2022-08-10T00:44:42 newAuthorInfo
+46D4CD4BEF44ECCC1FD033A6E55E9DEB newEncryptedData 2022-08-10T00:45:12 newAuthorInfo
+46D4CD4BEF44ECCC1FD033A6E55E9DEB newEncryptedData 2022-08-10T00:46:17 newAuthorInfo
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

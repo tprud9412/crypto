@@ -1,0 +1,21 @@
+logging:
+  level:
+    root: info
+spring:
+  messages:
+    basename: errors
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:mysql://localhost:3306/crypto?serverTimezone=Asia/Seoul
+    username: root
+    password: tkd5957!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
