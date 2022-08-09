@@ -12,21 +12,21 @@ import java.nio.file.Paths;
 public class KeyConfig {
     private String publicKey;
     private String secretKey;
-    private String symmentricKey;
+    private String symmetricKey;
     private FileWriter fw = null;
     private FileReader fr = null;
     private BufferedWriter bw = null;
     private BufferedReader br = null;
-    private static String KEY = "src/main/resources/key/";
-    private static String PUBLIC_KEY = "publicKey.txt";
-    private static String SECRET_KEY = "secretKey.txt";
-    private static String SYMMETRIC_KEY = "symmetricKey.txt";
+    private String KEY = "src/main/resources/key/";
+    private String PUBLIC_KEY = "publicKey.txt";
+    private String SECRET_KEY = "secretKey.txt";
+    private String SYMMETRIC_KEY = "symmetricKey.txt";
 
     public KeyConfig(){
         try{
             publicKey = publicKeyRead();
             secretKey = secretKeyRead();
-            symmentricKey = symmentricKeyRead();
+            symmetricKey = symmentricKeyRead();
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -99,6 +99,6 @@ public class KeyConfig {
 
     public void symmentricKeyWrite(String newKey) throws IOException{
         keyWrite(KEY, SYMMETRIC_KEY, newKey);
-        setSymmentricKey(newKey);
+        setSymmetricKey(newKey);
     }
 }

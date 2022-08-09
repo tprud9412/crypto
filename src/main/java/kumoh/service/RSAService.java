@@ -12,18 +12,20 @@ import java.util.List;
 public class RSAService {
     private KeyConfig keyConfig;
     private LogConfig logConfig;
+    private RSA rsa;
 
     public RSAService(){
         keyConfig = new KeyConfig();
         logConfig = new LogConfig();
+        rsa = new RSA();
     }
 
     public boolean keyValidation() {
-        String originKey = keyConfig.getSymmentricKey(); // 현재 사용중인 키 읽어들임
+        String originKey = keyConfig.getSymmetricKey(); // 현재 사용중인 키 읽어들임
         String logSymmetricKey = null;
         List<Log> logList = logConfig.getLog();
         if(!logList.isEmpty())
-            logSymmetricKey = RSA.RSADecryption(logList.get(logList.size()-1).getSymmetricKey()); // 마지막 index의 대칭키만 검사
+            logSymmetricKey = rsa.decryption(logList.get(logList.size()-1).getSymmetricKey()); // 마지막 index의 대칭키만 검사
         else{
             System.out.println("로그 기록 없음");
         }
@@ -41,27 +43,27 @@ public class RSAService {
         if(!logConfig.getLog().isEmpty()){
             for(Log log : logConfig.getLog()){
                 System.out.println(
-                        RSA.RSADecryption(log.getSymmetricKey()) + " " +
-                        RSA.RSADecryption(log.getEncryptedData()) + " " +
-                        RSA.RSADecryption(log.getRecordDate()) + " " +
-                        RSA.RSADecryption(log.getAuthorInfo())
+                        rsa.decryption(log.getSymmetricKey()) + " " +
+                        rsa.decryption(log.getEncryptedData()) + " " +
+                        rsa.decryption(log.getRecordDate()) + " " +
+                        rsa.decryption(log.getAuthorInfo())
                 );
             }
         }else System.out.println("로그 기록 없음");
     }
 
-    public void recordKey(List<Log> listLog){
+    public void recordKey(List<Log> newLog){
         List<Log> existingLog = new ArrayList<>();
         // 기존 로그 get
         if(!logConfig.getLog().isEmpty())
             existingLog = logConfig.getLog();
 
         //기존 로그 파일에 새로운 로그내용 덮어쓰기
-        for(Log log : listLog){
-            String newSymmetricKey = RSA.RSAEncryption(log.getSymmetricKey());
-            String newEncryptedData = RSA.RSAEncryption(log.getEncryptedData());
-            String newDate = RSA.RSAEncryption(log.getRecordDate());
-            String newAuthorInfo = RSA.RSAEncryption(log.getAuthorInfo());
+        for(Log log : newLog){
+            String newSymmetricKey = rsa.encryption(log.getSymmetricKey());
+            String newEncryptedData = rsa.encryption(log.getEncryptedData());
+            String newDate = rsa.encryption(log.getRecordDate());
+            String newAuthorInfo = rsa.encryption(log.getAuthorInfo());
 
             existingLog.add(new Log(newSymmetricKey, newEncryptedData, newDate, newAuthorInfo));
         }

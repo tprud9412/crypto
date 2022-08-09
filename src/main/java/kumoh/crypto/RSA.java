@@ -12,7 +12,7 @@ import java.security.spec.*;
 import java.util.Base64;
 
 public class RSA {
-    public static boolean RSAKeyCreate() throws UnsupportedEncodingException {
+    public boolean RSAKeyCreate() throws UnsupportedEncodingException {
         boolean retval = false;
         // 서버측 키 파일 생성 하기
         PublicKey publicKey1 = null;
@@ -66,7 +66,7 @@ public class RSA {
 
     //공개키로 암호화(키정보를 가져오기위한 사용자ID, 암호화 대상 평문)
     @SneakyThrows
-    public static String RSAEncryption(String plainstr) {
+    public String encryption(String plainText) {
         String sCipherBase64 = "";
         String sPublicKey = null;
         BufferedReader brPublicKey = null;
@@ -105,7 +105,7 @@ public class RSA {
         try {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-            byte[] bCipher = cipher.doFinal(plainstr.getBytes());
+            byte[] bCipher = cipher.doFinal(plainText.getBytes());
             sCipherBase64 =  Base64.getEncoder().encodeToString(bCipher);
 
         } catch (NoSuchAlgorithmException e) {
@@ -125,7 +125,7 @@ public class RSA {
 
     //개인키로 복호화(키정보를 가져오기위한 사용자ID, 복호화 대상 암호문)
     @SneakyThrows
-    public static String RSADecryption(String sCipherBase64) {
+    public String decryption(String cipherText) {
         String plainstr = "";
         String sPrivateKey = null;
         BufferedReader brPrivateKey = null;
@@ -159,7 +159,7 @@ public class RSA {
         // 개인키 이용 복호화
         try {
             Cipher cipher = Cipher.getInstance("RSA");
-            byte[] bCipher = Base64.getDecoder().decode(sCipherBase64.getBytes("UTF-8"));
+            byte[] bCipher = Base64.getDecoder().decode(cipherText.getBytes("UTF-8"));
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             byte[] bPlain = cipher.doFinal(bCipher);
             plainstr = new String(bPlain);
@@ -178,19 +178,4 @@ public class RSA {
 
         return plainstr;
     }
-
-    //암호화 및 복호화
-    public static void RSATest() throws UnsupportedEncodingException {
-
-
-        String sPlain = "46D4CD4BEF44ECCC1FD033A6E55E9DEB";
-        String encStr = RSAEncryption(sPlain);
-        String decStr = RSADecryption(encStr);
-
-        System.out.println("평문원본 : " + sPlain);
-        System.out.println("암호화문 : " + encStr);
-        System.out.println("복호화문 : " + decStr);
-
-    }
-
 }
