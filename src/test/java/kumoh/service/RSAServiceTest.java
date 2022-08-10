@@ -2,6 +2,7 @@ package kumoh.service;
 
 import kumoh.domain.Log;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

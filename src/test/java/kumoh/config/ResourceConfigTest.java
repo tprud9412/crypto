@@ -25,7 +25,7 @@ class ResourceConfigTest {
 
     @Test
     void 대칭키읽기() {
-        System.out.println(keyConfig.getSymmentricKey());
+        System.out.println(keyConfig.getSymmetricKey());
     }
 
     @Test
@@ -59,9 +59,9 @@ class ResourceConfigTest {
     // 암호화 복호화 되지 않은 문자열 입력, 파일 쓰기 테스트
     @Test
     void 대칭키쓰기() throws IOException {
-        System.out.println(keyConfig.getSymmentricKey());
+        System.out.println(keyConfig.getSymmetricKey());
         keyConfig.symmentricKeyWrite("newSymmetricKey");
-        System.out.println(keyConfig.getSymmentricKey());
+        System.out.println(keyConfig.getSymmetricKey());
     }
 
     // 암호화 복호화 되지 않은 문자열 입력, 파일 쓰기 테스트
